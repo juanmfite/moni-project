@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block NavTitle %}
+<a class="navbar-brand js-scroll-trigger" href="#page-top">Administrador de Prestamos</a>
+{% endblock %} 
+
+{% block Nav %}
+<li class="nav-item">
+    <a class="nav-link js-scroll-trigger" href="../accounts/logout" target="_blank">logout</a>
+</li>
+{% endblock %}
+
+{% block Contenido %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Acciones</th>
+        <th scope="col">DNI</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">GENERO</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">MONTO SOLICITADO</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for prestamo in prestamos %}
+          <tr>
+            <td>
+                <a class="button btn btn-dark" href="deletePrestamo/{{ prestamo.pk }}"> Borrar </a>  <a class="button btn btn-dark" href="prestamo/{{ prestamo.pk }}/edit/"> Editar </a>
+            </td>
+            <td>{{ prestamo.dni }}</td>
+            <td>{{ prestamo.nombre_apellido }}</td>
+            <td>{{ prestamo.genero }}</td>
+            <td>{{ prestamo.email }}</td>
+            <td>{{ prestamo.monto }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block NavTitle %}
+<a class="navbar-brand js-scroll-trigger" href="#page-top">Administrador de Prestamos</a>
+{% endblock %} 
+
+{% block Nav %}				
+{% endblock %}
+{% block Contenido %}
+<h3>Editar prestamo</h3>
+<form method="POST" class="post-form" href="../">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="button btn btn-dark" >Modificar</button>
+</form>
+
+{% endblock %}

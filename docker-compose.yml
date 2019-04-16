@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:11.2
+    environment: 
+      - POSTGRES_PASSWORD=moni
+      - POSTGRES_USER=moni
+      - POSTGRES_DB=moni
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    # volumes: #A modo de debug se utiliza con el volume
+    #   - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - DOMAIN=localhost
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=moni
+      - DB_PASS=moni
+      - DB_NAME=moni
+      - API_MONI=http://scoringservice.moni.com.ar:7001/api/v1/scoring/?
+      - PYTHONUNBUFFERED=0
+    depends_on:
+      - db
